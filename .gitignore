@@ -1,0 +1,7 @@
+bin/
+obj/
+.vscode/
+todo.txt
+appsettings.json
+SpecificStorage/
+wwwroot/Images/Users/

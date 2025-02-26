@@ -1,0 +1,597 @@
+@model Identity_UserModel
+
+<!----------------------------------------------------------------->
+<style>
+    #card7724cc1dd56c415ba1884d5626e55d9e {
+        padding: 20px;
+        width: 70%;
+        height: fit-content;
+        margin: 70px auto 0;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+        box-shadow: 0 0 5px gray;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info {
+        width: 50%;
+        float: left;
+        color: #333;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info img {
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 0 5px gray;
+        border-radius: 50%;
+        object-fit: cover;
+        display: inline-block;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .username-div,
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .username {
+        display: inline-block;
+        text-wrap: nowrap;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info pre.about-me {
+        text-wrap: wrap;
+        line-height: 150%;
+        display: inline-block;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .brief-info {
+        padding: 10px;
+        border: 2px solid lightgray;
+        border-radius: 5px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div {
+        width: 45%;
+        max-height: calc(100vh - 70px - 40px - 10px);
+        float: right;
+        overflow: hidden;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 0 5px gray;
+        border-radius: 10px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div img {
+        object-fit: cover;
+        width: 100%;
+        height: calc(100vh - 70px - 40px - 10px);
+        object-position: center;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .change-btn {
+        border: 1px solid gray;
+        background-color: white;
+        width: 25px;
+        height: 25px;
+        color: gray;
+        border-radius: 20px;
+        cursor: pointer;
+        display: inline-block;
+        /*position: absolute;
+            right: 0;*/
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .change-btn:hover {
+        color: #333;
+        border-color: #333;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .email-container p {
+        float: left;
+        /*font-size: 18px;*/
+        margin: 0;
+        margin-right: 5px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e label.choose-file-label {
+        background-color: white;
+        border: none;
+        color: #111;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: block;
+        width: fit-content;
+        margin: auto;
+        border-radius: 10px;
+        opacity: 0.7;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e label.choose-file-label:hover {
+        opacity: 1;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .close-span {
+        float: right;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .close-span:hover {
+        color: red;
+    }
+
+    @@media screen and (max-width:1000px) {
+        #card7724cc1dd56c415ba1884d5626e55d9e {
+            width: 100%;
+        }
+    }
+
+        @@media screen and (max-width:600px) {
+        #card7724cc1dd56c415ba1884d5626e55d9e .profile-info {
+            width: 100%;
+        }
+
+        #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div {
+            display: none;
+        }
+
+        /******* in edit mode ******/
+        #card7724cc1dd56c415ba1884d5626e55d9e {
+            height: 150vh;
+        }
+    }
+</style>
+<div id="card7724cc1dd56c415ba1884d5626e55d9e" class="clearfix">
+    <div class="profile-info">
+        <div style="position: relative;">
+            <img src="./UserImage?username=@Model.UserName&v=@Model.Version" alt="User Profile Image">
+            <button class="changeImg-btn change-btn" style="position: absolute;left: -5px;top: 80px;" title="Edit Image"
+                onclick="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('profileImg-form')[0].classList.add('open');">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+
+            <div class="username-div">
+                <h1 class="username">@Model.UserName</h1>
+                <button class="editUsername-btn change-btn" onclick="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('profileUsername-form')[0].classList.add('open');
+                        tempUsername_card7724cc1dd56c415ba1884d5626e55d9e = this.previousElementSibling.innerHTML;"
+                    title="Edit Username">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+            <div class="email-container clearfix" style="text-wrap: nowrap;">
+                <p><i class="fa-regular fa-envelope" style="font-size: 16px;color: gray;"></i></p>
+                <p style="font-size: 16px;" class="email-address">@Model.Email</p>
+                <button class="editEmail-btn change-btn" onclick="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('profileEmail-form')[0].classList.add('open');
+                    tempEmail_card7724cc1dd56c415ba1884d5626e55d9e = this.previousElementSibling.innerHTML;"
+                    title="Edit Email">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+        </div>
+        <div style="padding: 10px;box-shadow: 0 0 5px gray;border-radius: 5px;margin: 10px 0;position: relative;"
+            class="clearfix">
+            <pre class="about-me">@Model.Description</pre>
+            <button class="eidtBio-btn change-btn" style="position: absolute;right: -5px;bottom: -5px;" onclick="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('profileAboutMe-form')[0].classList.add('open');
+                    tempDescription_card7724cc1dd56c415ba1884d5626e55d9e = this.previousElementSibling.innerHTML;"
+                title="Edit Description">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+        </div>
+
+        <div id="changePassword5136b66928744698a64b4562e1c34b0a">
+            <style>
+                #changePassword5136b66928744698a64b4562e1c34b0a {
+                    margin: 20px 0 0 0;
+                }
+
+                #changePassword5136b66928744698a64b4562e1c34b0a a {
+                    display: block;
+                    text-decoration: none;
+                    padding: 15px 30px;
+                    font-size: 16px;
+                    border: 2px solid gray;
+                    border-radius: 10px;
+                    color: #333;
+                    width: fit-content;
+                    background-color: white;
+                    cursor: pointer;
+                }
+
+                #changePassword5136b66928744698a64b4562e1c34b0a a:hover {
+                    color: #111;
+                    box-shadow: 0 0 5px gray;
+                }
+            </style>
+            <a asp-action="ChangePassword">
+                <i class="fa-solid fa-key"></i> Change Password
+            </a>
+        </div>
+    </div>
+    <div class="showcase-div clearfix">
+        <img src="./UserShowcase?username=@Model.UserName&v=@Model.Version" alt="User Profile Showcase">
+        <button class="changeShowcase-btn change-btn" style="position: absolute;right: 5px;top: 5px;"
+            onclick="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('showcaseImg-form')[0].classList.add('open');"
+            title="Edit Image">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+
+        @if(Model.HasSpecificShowcase && (Model.SpecificShowcaseBy != null ||
+                Model.SpecificShowcaseLink != null))
+                {
+        <span style="font-size: 14px;position: absolute;bottom: 10px;left: 10px; color: gray;">
+            Photo by <a href="@Model.SpecificShowcaseLink">@Model.SpecificShowcaseBy</a>
+        </span>
+                }
+                else if (!Model.HasSpecificShowcase)
+        {
+            <span style="font-size: 14px;position: absolute;bottom: 10px;left: 10px; color: gray;">
+                Photo by <a
+                    href="https://unsplash.com/@@fazurrehman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Faizur
+                    Rehman</a> on <a
+                    href="https://unsplash.com/photos/person-holding-black-ipad-with-green-plant-dJpupM4LiS4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+            </span>
+        }
+
+    </div>
+
+    <div class="forms-container">
+        <style>
+            #card7724cc1dd56c415ba1884d5626e55d9e .forms-container a {
+                text-decoration: none;
+                color: white;
+                padding: 10px 15px;
+                background-color: rgba(255, 255, 255, 0.3);
+                border-radius: 0px;
+                border: 1px solid rgba(255, 255, 255, 0);
+                text-wrap: nowrap;
+                opacity: 0.7;
+            }
+
+            #card7724cc1dd56c415ba1884d5626e55d9e .forms-container a:hover {
+                opacity: 1;
+            }
+
+            #card7724cc1dd56c415ba1884d5626e55d9e .forms-container button[type=submit] {
+                padding: 10px 15px;
+                background-color: white;
+                border: 1px solid gray;
+                border-radius: 30px;
+                cursor: pointer;
+                opacity: 0.7;
+                margin: 30px auto 0;
+                display: block;
+            }
+
+            #card7724cc1dd56c415ba1884d5626e55d9e .forms-container button[type=submit]:hover {
+                opacity: 1;
+            }
+        </style>
+        <div class="profileImg-form clearfix">
+            <style>
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileImg-form {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    bottom: 100%;
+                    right: 100%;
+                    backdrop-filter: blur(5px);
+                    background-color: rgba(0, 0, 0, 0.5);
+                    text-align: center;
+                    padding: 0;
+                    color: white;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    transition: all 0.3s;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileImg-form.open {
+                    bottom: 0;
+                    right: 0;
+                    padding: 50px;
+                }
+            </style>
+            <div class="clearfix">
+                <span class="close-span" onclick="this.parentElement.parentElement.classList.remove('open');">&times;
+                </span>
+            </div>
+            <a asp-action="RemoveProfileImage" class="remove">
+                <i class="fa-solid fa-eraser"></i> Remove profile image
+            </a>
+            <p>or</p>
+            <form asp-action="SubmitProfileImage" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="profileImg" class="choose-file-label">
+                        <i class="fa-regular fa-image"></i> Choose a new image</label>
+                    <input class="input-file" type="file" id="profileImg" name="imgFile" style="display: none;"
+                        oninput="setProfileImage(this,event)">
+                </div>
+                <button type="submit" style="display: none;"><i class="fa-solid fa-cloud-arrow-up"></i>
+                    Update profile</button>
+            </form>
+            <script>
+                function setProfileImage(inputElement, event) {
+                    if (event.target.files[0]) {
+                        if (event.target.files[0].size > 100 * 1024) {
+                            alert("Profile image can't be more than 100 KB");
+                        }
+                        else {
+                            inputElement.parentElement.nextElementSibling.style.display = 'block';
+                        }
+                    }
+                }
+            </script>
+        </div>
+        <div class="profileUsername-form">
+            <style>
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileUsername-form {
+                    text-align: left;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 0;
+                    padding: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(5px);
+                    color: white;
+                    transition: all 0.3s;
+                    overflow: hidden;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileUsername-form.open {
+                    width: 45%;
+                    padding: 100px 5% 5%;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileUsername-form form input {
+                    width: 100%;
+                    padding: 5px 10px;
+                    font-size: 18px;
+                    border-radius: 20px;
+                    border: 1px solid gray;
+                    color: rgb(10, 10, 10);
+                    margin: 10px 0;
+                }
+
+                @@media screen and (max-width:600px) {
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileUsername-form.open {
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: 50%;
+                        width: 100%;
+                        padding: 10px;
+                        overflow-y: auto;
+                        border: 1px solid gray;
+                    }
+
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileUsername-form form button[type=submit] {
+                        margin: 20px auto;
+                    }
+                }
+            </style>
+            <div class="clearfix">
+                <span class="close-span" onclick="this.parentElement.parentElement.classList.remove('open');
+                        document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('username')[0].innerHTML = tempUsername_card7724cc1dd56c415ba1884d5626e55d9e;
+                        this.parentElement.nextElementSibling.getElementsByTagName('input')[0].value = '';">
+                    &times;
+                </span>
+            </div>
+            <form asp-action="SubmitUsername" method="get">
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="@Model.UserName" name="username" maxlength="50"
+                    oninput="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('username')[0].innerHTML = this.value;">
+                <button type="submit"><i class="fa-solid fa-cloud-arrow-up"></i> Update Profile</button>
+            </form>
+        </div>
+        <div class="profileAboutMe-form">
+            <style>
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileAboutMe-form {
+                    text-align: left;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 0;
+                    padding: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(5px);
+                    color: white;
+                    transition: all 0.3s;
+                    overflow: hidden;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileAboutMe-form.open {
+                    width: 45%;
+                    padding: 100px 5% 5%;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileAboutMe-form form textarea {
+                    width: 100%;
+                    padding: 5px 10px;
+                    font-size: 16px;
+                    border-radius: 20px;
+                    border: 1px solid gray;
+                    color: rgb(10, 10, 10);
+                    margin: 10px 0;
+                }
+
+                                @@media screen and (max-width:600px) {
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileAboutMe-form.open {
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: 50%;
+                        width: 100%;
+                        padding: 10px;
+                        overflow-y: auto;
+                        border: 1px solid gray;
+                    }
+
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileAboutMe-form form button[type=submit] {
+                        margin: 20px auto;
+                    }
+                }
+            </style>
+            <div class="clearfix">
+                <span class="close-span" onclick="this.parentElement.parentElement.classList.remove('open');
+                        document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('about-me')[0].innerHTML = tempDescription_card7724cc1dd56c415ba1884d5626e55d9e;
+                        this.parentElement.nextElementSibling.getElementsByTagName('textarea')[0].value = '';">&times;
+                </span>
+            </div>
+            <form asp-action="SubmitDescription" method="get">
+                <textarea name="description" id="aboutme" cols="30" rows="10"
+                    placeholder="Introduce yourself and your account here.." maxlength="500"
+                    oninput="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('about-me')[0].innerHTML = this.value;">
+                    @Model.Description
+                    </textarea>
+                <button type=" submit"><i class="fa-solid fa-cloud-arrow-up"></i> Update Profile</button>
+            </form>
+        </div>
+        <div class="profileEmail-form">
+            <style>
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileEmail-form {
+                    text-align: left;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 0;
+                    padding: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(5px);
+                    color: white;
+                    transition: all 0.3s;
+                    overflow: hidden;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileEmail-form.open {
+                    width: 45%;
+                    padding: 100px 5% 5%;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .profileEmail-form form input {
+                    width: 100%;
+                    padding: 5px 10px;
+                    font-size: 18px;
+                    border-radius: 20px;
+                    border: 1px solid gray;
+                    color: rgb(10, 10, 10);
+                    margin: 10px 0;
+                }
+
+                                @@media screen and (max-width:600px) {
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileEmail-form.open {
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: 50%;
+                        width: 100%;
+                        padding: 10px;
+                        overflow-y: auto;
+                        border: 1px solid gray;
+                    }
+
+                    #card7724cc1dd56c415ba1884d5626e55d9e .profileEmail-form form button[type=submit] {
+                        margin: 20px auto;
+                    }
+                }
+            </style>
+            <div class="clearfix">
+                <span class="close-span" onclick="this.parentElement.parentElement.classList.remove('open');
+                        document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('email-address')[0].innerHTML = tempEmail_card7724cc1dd56c415ba1884d5626e55d9e;
+                        this.parentElement.nextElementSibling.getElementsByTagName('input')[0].value = '';">
+                    &times;
+                </span>
+            </div>
+            <form asp-action="SubmitNewEmail" method="get">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="@Model.Email" name="email" maxlength="100"
+                    oninput="document.getElementById('card7724cc1dd56c415ba1884d5626e55d9e').getElementsByClassName('email-address')[0].innerHTML = this.value;">
+                <!--div class="clearfix" style="padding: 20px 0;">
+                    <label for="" style="float: left;display: inline;">Display Email Publicly?</label>
+                    <input type="checkbox" name="displayemail"
+                        style="float: left; display: inline;width: fit-content;margin: 2px 10px;transform: scale(150%, 150%);">
+                </div-->
+                <button type="submit"><i class="fa-solid fa-cloud-arrow-up"></i> Update Profile</button>
+            </form>
+        </div>
+        <div class="showcaseImg-form clearfix">
+            <style>
+                #card7724cc1dd56c415ba1884d5626e55d9e .showcaseImg-form {
+                    position: absolute;
+                    top: 100%;
+                    left: 100%;
+                    bottom: 0;
+                    right: 50%;
+                    backdrop-filter: blur(5px);
+                    background-color: rgba(0, 0, 0, 0.5);
+                    text-align: center;
+                    padding: 0;
+                    color: white;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    transition: all 0.3s;
+                }
+
+                #card7724cc1dd56c415ba1884d5626e55d9e .showcaseImg-form.open {
+                    top: 0;
+                    left: 0;
+                    padding: 50px;
+                }
+            </style>
+            <div class="clearfix">
+                <span class="close-span" onclick="this.parentElement.parentElement.classList.remove('open');">&times;
+                </span>
+            </div>
+            <a asp-action="RemoveProfileShowcase" class="remove">
+                <i class="fa-solid fa-xmark"></i> Remove image
+            </a>
+            <p>or</p>
+            <form asp-action="SubmitShowcaseImage" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="showcaseImg" class="choose-file-label">
+                        <i class="fa-regular fa-image"></i> Choose a new one</label>
+                    <input class="input-file" type="file" id="showcaseImg" name="imgFile" style="display: none;"
+                        oninput="setShowcaseImage(this,event)">
+                </div>
+                <div style="display: none;padding: 10px;">
+                    <div style="margin: 10px 0;">
+                        <label for="photo-by" style="font-size: 14px;">Photo by </label>
+                        <input type="text" name="by" id="photo-by"
+                            style="float: right;padding: 2px 5px;border: none;border-radius: 5px;">
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <label for="photo-link" style="font-size: 14px;">link </label>
+                        <input type="text" id="photo-link" name="link"
+                            style="float: right;padding: 2px 5px;border: none;border-radius: 5px;">
+                    </div>
+                    <button type="submit"><i class="fa-solid fa-cloud-arrow-up"></i>
+                        Update profile</button>
+                </div>
+            </form>
+            <script>
+                function setShowcaseImage(inputElement, event) {
+                    if (event.target.files[0]) {
+                        if (event.target.files[0].size > 1024 * 1024) {
+                            alert("Showcase image can't be more than 1 MB");
+                        }
+                        else {
+                            inputElement.parentElement.nextElementSibling.style.display = 'block';
+                        }
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+<script>
+    let tempUsername_card7724cc1dd56c415ba1884d5626e55d9e;
+    let tempDescription_card7724cc1dd56c415ba1884d5626e55d9e;
+    let tempEmail_card7724cc1dd56c415ba1884d5626e55d9e;
+</script>

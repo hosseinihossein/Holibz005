@@ -1,0 +1,232 @@
+@model Home_ContactUsModel
+
+<!----------------------------------------------------------------->
+<style>
+    body {
+        background-image: url("/Images/phone.webp");
+        background-size: 100vw;
+    }
+</style>
+<style>
+    #form0e96fe3a582640eb9b41911c7d5e92c9 {
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+        padding: 1%;
+        width: 50vw;
+        min-height: 100vh;
+        box-shadow: 0 0 5px gray;
+        margin: 70px auto 0;
+        border-radius: 10px;
+        text-align: center;
+        color: #333;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9>h1 {
+        font-weight: 600;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9>p {
+        color: rgb(48, 48, 48);
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column {
+        padding: 5%;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.left {
+        width: 40%;
+        float: left;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.left i {
+        float: left;
+        margin-right: 10px;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.left p {
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.left h5 {
+        margin-bottom: 0;
+        margin-top: 30px;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right {
+        float: right;
+        width: 60%;
+        border-left: 1px solid gray;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right label {
+        display: block;
+        text-align: left;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right input,
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right textarea {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        color: rgb(65, 65, 65);
+        border: 2px solid gray;
+        border-radius: 5px;
+        resize: none;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right input:focus,
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right textarea:focus {
+        border-color: #333;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right input[type=submit] {
+        width: 50%;
+        background-color: white;
+        /*rgb(71, 12, 167);*/
+        color: #333;
+        border: 2px solid #333;
+        border-radius: 5px;
+        opacity: 0.7;
+        cursor: pointer;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right input[type=submit]:hover {
+        opacity: 1;
+    }
+
+    #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right form>div {
+        margin: 16px auto;
+    }
+
+    @@media only screen and (max-width:1200px) {
+        #form0e96fe3a582640eb9b41911c7d5e92c9 {
+            width: 60vw;
+        }
+    }
+
+        @@media only screen and (max-width:900px) {
+
+        #form0e96fe3a582640eb9b41911c7d5e92c9 .column.left,
+        #form0e96fe3a582640eb9b41911c7d5e92c9 .column.right {
+            float: none;
+            width: 100%;
+        }
+    }
+</style>
+<div id="form0e96fe3a582640eb9b41911c7d5e92c9">
+    <h1>Contact Us</h1>
+    <p>
+        Please enter your <strong>Name</strong> and <strong>Email</strong> address so we will let you know we're
+        processing your request. <br> Please mention the link addresses (if there's any) to which your request is
+        referred in the message box below.
+    </p>
+    <div class="clearfix">
+        <div class="column left">
+            <div>
+                <div>
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h5>Address:</h5>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, obcaecati!</p>
+            </div>
+            <div>
+                <div>
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <h5>Tel:</h5>
+                </div>
+                <p>*-(***)-***-****</p>
+            </div>
+            <div>
+                <div>
+                    <i class="fa-regular fa-envelope"></i>
+                    <h5>E-Mail:</h5>
+                </div>
+                <p>support@fake-email.com</p>
+            </div>
+            <div>
+                <style>
+                    #button5a21454ab895458b98ea778d22136297 {
+                        display: block;
+                        width: fit-content;
+                        margin: 30% auto 0;
+                    }
+
+                    #button5a21454ab895458b98ea778d22136297 .fa-brands {
+                        padding: 11px;
+                        font-size: 20px;
+                        width: 40px;
+                        height: 40px;
+                        text-align: center;
+                        text-decoration: none;
+                        margin: 5px 2px;
+                        border-radius: 50%;
+                    }
+
+                    #button5a21454ab895458b98ea778d22136297 .fa-brands:hover {
+                        opacity: 0.7;
+                    }
+
+                    #button5a21454ab895458b98ea778d22136297 .fa-facebook {
+                        background: #3B5998;
+                        color: white;
+                    }
+
+                    #button5a21454ab895458b98ea778d22136297 .fa-x-twitter {
+                        background: #333;
+                        color: white;
+                    }
+
+                    #button5a21454ab895458b98ea778d22136297 .fa-instagram {
+                        background: #881282;
+                        color: white;
+                    }
+
+                                        @@media only screen and (max-width:600px) {
+                        #button5a21454ab895458b98ea778d22136297 {
+                            margin: 10% auto 0;
+                        }
+                    }
+                </style>
+
+                <div id="button5a21454ab895458b98ea778d22136297">
+                    <!-- Add font awesome icons -->
+                    <a href="#" class="fa-brands fa-facebook"></a>
+                    <a href="#" class="fa-brands fa-x-twitter"></a>
+                    <a href="#" class="fa-brands fa-instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="column right">
+            <form asp-controller="Home" asp-action="SubmitContactUs" method="post">
+                <div asp-validation-summary="All" style="color: red;"></div>
+                <div>
+                    <input type="text" asp-for="Name" placeholder="Name *">
+                </div>
+                <div>
+                    <input type="email" asp-for="Email" placeholder="Email *">
+                </div>
+                <div>
+                    <label asp-for="Message">Message *</label>
+                    <textarea id="message" asp-for="Message" cols="30" rows="10"></textarea>
+                </div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkeZ2wTzJxqgC_K"></div>
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p
+    style="position: fixed; bottom: 0px; right: 10px; color: white; background-color: rgb(94, 94, 94);font-size: 14px; width: 15vw;">
+    Photo by
+    <a style="color: white;"
+        href="https://unsplash.com/@@quinoal?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Quino
+        Al</a> on
+    <a style="color: white;"
+        href="https://unsplash.com/photos/photo-of-black-rotary-phone-against-white-background-xhGMQ_nYWqU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash
+    </a>
+</p>

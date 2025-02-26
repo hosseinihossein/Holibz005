@@ -1,0 +1,34 @@
+@model object
+@{
+    ViewBag.ResultState = ViewBag.ResultState ?? "info";
+}
+<!-------------------------------------------------------->
+<style>
+    #banner018c300dd4fb44579c34127441dbe783.danger {
+        background-color: red;
+        color: white;
+    }
+
+    #banner018c300dd4fb44579c34127441dbe783.success {
+        background-color: lawngreen;
+        color: #333;
+    }
+
+    #banner018c300dd4fb44579c34127441dbe783.info {
+        background-color: skyblue;
+        color: #333;
+    }
+
+    #banner018c300dd4fb44579c34127441dbe783 h1 {
+        padding: 14px 16px;
+        margin: 10px auto;
+        width: fit-content;
+    }
+</style>
+<div id="banner018c300dd4fb44579c34127441dbe783" class="@ViewBag.ResultState">
+    <h1>Result</h1>
+</div>
+
+@Html.Raw(Model.ToString())
+
+<div asp-validation-summary="All" style="color: red;"></div>

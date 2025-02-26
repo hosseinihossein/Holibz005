@@ -1,0 +1,669 @@
+@model List<Identity_UserAndRolesModel>
+
+<!----------------------------------------------------------------->
+
+<style>
+    /****************************************************************************************/
+    #table69cbcffed58f432f8a574e34d072ed73 {
+        width: 60%;
+        background-color: rgba(250, 250, 250, 1);
+        margin: 70px auto;
+        box-shadow: 0 0 5px gray;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    @@media screen and (max-width:1000px) {
+        #table69cbcffed58f432f8a574e34d072ed73 {
+            width: 100%;
+        }
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 table {
+        border: none;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr {
+        border-radius: 20px;
+        transition: box-shadow 0.1s;
+        color: #333;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr.fadeRow {
+        opacity: 0.5;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr:not(:first-child):hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        background-color: white;
+        color: #111;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr:first-child {
+        background-color: rgb(236, 236, 236);
+        border: none;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr th:first-child,
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:first-child {
+        /*border-radius: 0 15px 15px 0;*/
+        border-radius: 15px 0 0 15px;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr th:last-child,
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:last-child {
+        /*border-radius: 15px 0 0 15px;*/
+        border-radius: 0 15px 15px 0;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th,
+    #table69cbcffed58f432f8a574e34d072ed73 td {
+        border: none;
+        margin: 0;
+        padding: 5px 10px;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th {
+        padding: 10px;
+        color: gray;
+        font-weight: normal;
+        text-wrap: nowrap;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td.bold {
+        font-weight: bold;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span {
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    /******************* color ****************/
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td.gray {
+        color: gray;
+        font-size: 12px;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.red {
+        color: rgb(221, 0, 0);
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.green {
+        color: green;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.blue {
+        color: blue;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.bg-red {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.bg-green {
+        background-color: rgba(124, 252, 0, 0.2);
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td span.bg-blue {
+        background-color: rgba(135, 206, 235, 0.2);
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 table a {
+        text-decoration: none;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:last-child a,
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:last-child button {
+        padding: 10px 20px;
+        color: blue;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 20px;
+        border: 1px solid lightgray;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:last-child a:hover,
+    #table69cbcffed58f432f8a574e34d072ed73 tr td:last-child button:hover {
+        background-color: rgba(135, 206, 235, 0.2);
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th span.triangle {
+        font-size: 22px;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th span.triangle.down {
+        font-size: 20px;
+        position: relative;
+        left: -15px;
+        /*right: 0px;*/
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th.clickable {
+        cursor: pointer;
+        position: relative;
+    }
+
+    #table69cbcffed58f432f8a574e34d072ed73 th.clickable:hover {
+        color: black;
+    }
+</style>
+<div id="table69cbcffed58f432f8a574e34d072ed73">
+
+    <p style="margin: 10px;display: inline-block;font-size: 14px;color: #555;">Total:
+        <span id="numberOfUsersCounter-span" style="color: #111;"></span>
+    </p>
+
+    <h5 style="position: absolute;top: 0;left: 50%;transform: translateX(-50%);margin-top: 10px;">Users List</h5>
+
+    <div class="dropdown">
+        <style>
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown {
+                position: relative;
+                display: block;
+                width: fit-content;
+                float: right;
+                margin: auto;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropbtn {
+                background-color: transparent;
+                padding: 10px 16px 16px 4px;
+                margin-top: 0px;
+                border: none;
+                cursor: pointer;
+                color: #555;
+                font-size: 14px;
+                width: fit-content;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown:hover .dropbtn {
+                color: #111;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropdown-content {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                flex-wrap: nowrap;
+                height: 0;
+                width: fit-content;
+                position: absolute;
+                top: 0px;
+                right: 0;
+                background-color: white;
+                box-shadow: 0px 0px 5px 0px gray;
+                z-index: 1;
+                overflow: hidden;
+                transition: all 0.2s ease-out;
+                opacity: 0;
+                border-radius: 10px;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown:hover .dropdown-content {
+                opacity: 1;
+                top: 30px;
+                height: fit-content;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropdown-content a {
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                color: #555;
+                font-size: 14px;
+                width: 100%;
+                text-wrap: nowrap;
+                margin: 1px;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropdown-content button {
+                text-decoration: none;
+                display: block;
+                color: #555;
+                width: 100%;
+                text-wrap: nowrap;
+                margin: 1px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropdown-content button:hover,
+            #table69cbcffed58f432f8a574e34d072ed73 .dropdown .dropdown-content a:hover {
+                color: #111;
+                background-color: #eee;
+            }
+        </style>
+        <button class="dropbtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="dropdown-content clearfix">
+            <div>
+                <a href="#">option1</a>
+                <a href="#">option2</a>
+                <a href="#">option3</a>
+            </div>
+            <!--div>
+                    <a href="#">IMDb 250</a>
+                    <a href="#">horror</a>
+                    <a href="#">comedy</a>
+                </div>
+                <div>
+                    <a href="#">IMDb 250</a>
+                    <a href="#">horror</a>
+                    <a href="#">comedy</a>
+                </div-->
+        </div>
+    </div>
+
+    <div id="searchBox">
+        <!-------------------------------------------------------->
+        <style>
+            #searchBox {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+
+            }
+
+            .searchForm {
+                width: 30%;
+            }
+
+            .searchForm input[type=text] {
+                width: 90%;
+                font-size: 14px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                /*border: 1px solid gray;*/
+                border: none;
+                box-shadow: 0 0 2px #555;
+                color: #333;
+            }
+
+            .searchForm input[type=text]:focus {
+                /*border-color: #333;*/
+                box-shadow: 0 0 3px #333;
+            }
+
+            .searchForm button[type=submit] {
+                font-size: 16px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                border: 1px solid gray;
+                cursor: pointer;
+                background-color: white;
+                color: gray;
+            }
+
+            .searchForm button[type=submit]:hover {
+                color: black;
+            }
+        </style>
+        <form action="" class="searchForm">
+            <input type="text" class="searchInput" id="fullnameSearchInput"
+                onkeyup="filter_username_Script_a0d21024282f453f8247fefa6ec435f2(this)" placeholder="Username..">
+        </form>
+        <form action="" class="searchForm">
+            <input type="text" class="searchInput" id="citySearchInput"
+                onkeyup="filter_Email_Script_a0d21024282f453f8247fefa6ec435f2(this)" placeholder="Email..">
+        </form>
+        <form action="" class="searchForm">
+            <input type="text" class="searchInput" id="postSearchInput"
+                onkeyup="filter_Role_Script_a0d21024282f453f8247fefa6ec435f2(this)" placeholder="Role..">
+        </form>
+        <script>
+            /*Script_a0d21024282f453f8247fefa6ec435f2*/
+            function filter_username_Script_a0d21024282f453f8247fefa6ec435f2(inputElement) {
+                let mainTable = document.getElementById("filterTable9bac668ddd8841f590416eafec7f6f80");
+                // Declare variables
+                let filter, filteredTRs, filterTDs, i, txtValue, n = 0;
+                //inputElement = mainTable_searche62f342a43f0412baf7908d6236c65ec.querySelector('#myInput');
+                filter = inputElement.value.toUpperCase();
+                filteredTRs = mainTable.getElementsByClassName('filterTR');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < filteredTRs.length; i++) {
+                    filterTDs = filteredTRs[i].getElementsByClassName("filterTD-Username")[0];
+                    txtValue = filterTDs.textContent || filterTDs.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        filteredTRs[i].style.display = "";
+                        n++;
+                    } else {
+                        filteredTRs[i].style.display = "none";
+                    }
+                }
+
+                countUsers(n);
+            }
+
+            function filter_Email_Script_a0d21024282f453f8247fefa6ec435f2(inputElement) {
+                let mainTable = document.getElementById("filterTable9bac668ddd8841f590416eafec7f6f80");
+                // Declare variables
+                let filter, filteredTRs, filterTDs, i, txtValue, n = 0;
+                //inputElement = mainTable_searche62f342a43f0412baf7908d6236c65ec.querySelector('#myInput');
+                filter = inputElement.value.toUpperCase();
+                filteredTRs = mainTable.getElementsByClassName('filterTR');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < filteredTRs.length; i++) {
+                    filterTDs = filteredTRs[i].getElementsByClassName("filterTD-Email")[0];
+                    txtValue = filterTDs.textContent || filterTDs.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        filteredTRs[i].style.display = "";
+                        n++;
+                    } else {
+                        filteredTRs[i].style.display = "none";
+                    }
+                }
+
+                countUsers(n);
+            }
+
+            function filter_Role_Script_a0d21024282f453f8247fefa6ec435f2(inputElement) {
+                let mainTable = document.getElementById("filterTable9bac668ddd8841f590416eafec7f6f80");
+                // Declare variables
+                let filter, filteredTRs, filterTDs, i, txtValue, n = 0;
+                //inputElement = mainTable_searche62f342a43f0412baf7908d6236c65ec.querySelector('#myInput');
+                filter = inputElement.value.toUpperCase();
+                filteredTRs = mainTable.getElementsByClassName('filterTR');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < filteredTRs.length; i++) {
+                    filterTDs = filteredTRs[i].getElementsByClassName("filterTD-Role")[0];
+                    txtValue = filterTDs.textContent || filterTDs.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        filteredTRs[i].style.display = "";
+                        n++;
+                    } else {
+                        filteredTRs[i].style.display = "none";
+                    }
+                }
+
+                countUsers(n);
+            }
+
+            function countUsers(n) {
+                let userCountSpan = document.getElementById("numberOfUsersCounter-span");
+                userCountSpan.innerHTML = n;
+            }
+        </script>
+        <!-------------------------------------------------------->
+    </div>
+    <!---------------------------------- users list -------------------------------------->
+    <table id="filterTable9bac668ddd8841f590416eafec7f6f80">
+        <tbody>
+            <tr>
+                <!--th>
+                        <div class="formbd815e99e0f2479ab098c05b6dfc81f7">
+                            <label class="container">
+                                <input type="checkbox"
+                                    onchange="toggleAllCkeckboxes_table69cbcffed58f432f8a574e34d072ed73(this)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </th-->
+                <th>Image</th>
+                <th class="clickable" onclick="sortTable_Script_21a191e39d5d4e93afa2a2d0a230a902(this, 1)">
+                    Username
+                    <span class="triangle up">▴</span>
+                    <span class="triangle down">▾</span>
+                </th>
+                <th class="clickable" onclick="sortTable_Script_21a191e39d5d4e93afa2a2d0a230a902(this, 2)">
+                    Email
+                    <span class="triangle up">▴</span>
+                    <span class="triangle down">▾</span>
+                </th>
+                <th class="clickable" onclick="sortTable_Script_21a191e39d5d4e93afa2a2d0a230a902(this, 3)">
+                    Roles
+                    <span class="triangle up">▴</span>
+                    <span class="triangle down">▾</span>
+                </th>
+                <th>Actions</th>
+            </tr>
+            @foreach(Identity_UserAndRolesModel ur in Model)
+                        {
+            <tr class="filterTR @(ur.User.Active ? string.Empty : "fadeRow")">
+                <td>
+                    <img src="./UserImage?username=@ur.User.UserName&v=@ur.User.Version"
+                        style="width: 40px;height:40px;border-radius:50%;">
+                </td>
+                <td class="bold filterTD-Username">
+                    @ur.User.UserName
+                </td>
+                <td class="bold filterTD-Email">@ur.User.Email</td>
+                <td class="gray filterTD-Role">
+                    @foreach(string role in ur.Roles)
+                                        {
+                    <span class="green bg-green">@role</span>
+                                        }
+                </td>
+                <td>
+                    <a asp-action="EditUser" asp-route-userGuid="@ur.User.UserGuid">Edit</a>
+                </td>
+            </tr>
+                        }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    /*
+        Script_823253cc22454a5db45bb30b06747555
+        sorts table by number by click on table head
+    */
+    function sortTable_Script_823253cc22454a5db45bb30b06747555(element, n) {
+        let upTriangle = element.getElementsByClassName("up")[0];
+        let downTriangle = element.getElementsByClassName("down")[0];
+
+        let rows, switching, i, tableData, nextTableData, shouldSwitch, dir, switchcount = 0;
+        let table = element.parentElement.parentElement;
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        upTriangle.style.visibility = "visible";
+        downTriangle.style.visibility = "hidden";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                tableData = rows[i].getElementsByTagName("TD")[n];
+                nextTableData = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (Number(tableData.innerText) > Number(nextTableData.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (Number(tableData.innerText) < Number(nextTableData.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                    upTriangle.style.visibility = "hidden";
+                    downTriangle.style.visibility = "visible";
+                }
+            }
+        }
+
+    }
+</script>
+
+<script>
+    /*Script_7f93fc1a6ee040718d57e78df9d58200
+    sorts table by date by click on table head*/
+
+    function sortTable_Script_d321834585ae45f0b2e5190c2f7b476b(element, n) {
+        let upTriangle = element.getElementsByClassName("up")[0];
+        let downTriangle = element.getElementsByClassName("down")[0];
+
+        let rows, switching, i, tableData, nextTableData, shouldSwitch, dir, switchcount = 0;
+        let table = element.parentElement.parentElement;
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        upTriangle.style.visibility = "visible";
+        downTriangle.style.visibility = "hidden";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                tableData = rows[i].getElementsByTagName("TD")[n];
+                nextTableData = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (Date.parse(tableData.innerText) > Date.parse(nextTableData.innerText)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (Date.parse(tableData.innerText) < Date.parse(nextTableData.innerText)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                    upTriangle.style.visibility = "hidden";
+                    downTriangle.style.visibility = "visible";
+                }
+            }
+        }
+
+    }
+</script>
+
+<script>
+    /*Script_7f93fc1a6ee040718d57e78df9d58200
+    sorts table by name by click on table head*/
+
+    function sortTable_Script_21a191e39d5d4e93afa2a2d0a230a902(element, n) {
+        let upTriangle = element.getElementsByClassName("up")[0];
+        let downTriangle = element.getElementsByClassName("down")[0];
+
+        let rows, switching, i, tableData, nextTableData, shouldSwitch, dir, switchcount = 0;
+        let table = element.parentElement.parentElement;
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        upTriangle.style.visibility = "visible";
+        downTriangle.style.visibility = "hidden";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                tableData = rows[i].getElementsByTagName("TD")[n];
+                nextTableData = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (tableData.innerText > nextTableData.innerText) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (tableData.innerText < nextTableData.innerText) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                    upTriangle.style.visibility = "hidden";
+                    downTriangle.style.visibility = "visible";
+                }
+            }
+        }
+
+    }
+</script>
+
+<script>
+    let userCountSpan = document.getElementById("numberOfUsersCounter-span");
+    let mainTable = document.getElementById("filterTable9bac668ddd8841f590416eafec7f6f80");
+    userCountSpan.innerHTML = mainTable.getElementsByTagName("TR").length - 1;
+</script>

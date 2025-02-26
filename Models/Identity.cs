@@ -18,13 +18,19 @@ public class Identity_UserModel : IdentityUser
     public string UserGuid { get; set; } = string.Empty;
     public string PasswordLiteral { get; set; } = string.Empty;
     public string? EmailValidationCode { get; set; } = null;
-    public bool DisplayEmail { get; set; } = false;
+    //public bool DisplayEmail { get; set; } = false;
     public DateTime? EmailValidationDate { get; set; } = null;
-    public bool DisplayEmailPublicly { get; set; } = false;
-    public int ProfileImageVersion { get; set; } = 0;
+    //public bool DisplayEmailPublicly { get; set; } = false;
+    public int Version { get; set; } = 0;
     public bool Active { get; set; } = true;
-    //public List<string> Notifications { get; set; } = new();
     public string Description { get; set; } = "Description..";
+    public bool HasSpecificShowcase { get; set; } = false;
+    public string? SpecificShowcaseBy { get; set; } = null;
+    public string? SpecificShowcaseLink { get; set; } = null;
+    public bool HasSpecificProfileImage { get; set; } = false;
+
+
+    //public List<string> Notifications { get; set; } = new();
     //public virtual List<string> LoggedInDevices { get; set; } = new();
     //public int NumberOfLogins { get; set; } = 0;
     //[Unicode]
@@ -70,7 +76,9 @@ public class Identity_SignupModel
 public class Identity_ProfileModel
 {
     public Identity_UserModel? MyUser { get; set; }
-    public List<Library_ItemModel> ItemModels { get; set; } = new();
+    //public List<Library_ItemModel> ItemModels { get; set; } = new();
+    public int NumberOfProjects { get; set; } = 0;
+    public int NumberOfLikes { get; set; } = 0;
 }
 
 //********************* administration ********************

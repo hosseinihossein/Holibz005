@@ -1,0 +1,259 @@
+@model Identity_SignupModel
+
+<!----------------------------------------------------------------->
+<style>
+    #form4b102914a7d34d21949aa53f69becb2a {
+        width: 60%;
+        border-radius: 5px;
+        /*background-color: rgb(36, 63, 10);*/
+        /*position: relative;*/
+        margin: 60px auto 0;
+        color: #555;
+        padding: 10px;
+        /*box-shadow: 0 0 10px rgba(36, 63, 10, 1);*/
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .main {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        border-radius: 5px;
+        box-shadow: 0 0 5px gray;
+    }
+
+    /*#form4b102914a7d34d21949aa53f69becb2a .main>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            position: absolute;
+            z-index: -1;
+            opacity: 0.9;
+        }*/
+
+    #form4b102914a7d34d21949aa53f69becb2a .left {
+        float: left;
+        width: 40%;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right {
+        float: right;
+        width: 60%;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box {
+        height: 50%;
+        margin-top: 20%;
+        padding: 20%;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box h1 {
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box .signin-box {
+        width: fit-content;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 5%;
+        /*border-radius: 10px;*/
+        font-size: 14px;
+        border: 2px solid gray;
+        /*color: #555;*/
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box .signin-box p {
+        margin-top: 0;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box .signin-box a {
+        color: inherit;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .left .content-box .signin-box a:hover {
+        color: #111;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box {
+        /*height: 100%;*/
+        position: relative;
+        /*top: 0;
+                bottom: 0;*/
+        width: 80%;
+        /*backdrop-filter: blur(5px);*/
+        overflow: hidden;
+        background-color: #eee;
+        padding: 20px;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form {
+        margin-bottom: 20%;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form * {
+        display: block;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form input {
+        font-size: 14px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        border: 2px solid gray;
+        /*background-color: rgba(255, 255, 255, 0.2);*/
+        color: #111;
+        margin: 5px 0;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form input:focus {
+        border-color: #555;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form input[type=submit] {
+        background-color: white;
+        color: #555;
+        margin: 20px 0;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 7px;
+        cursor: pointer;
+        border: 2px solid white;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form input[type=submit]:hover {
+        border-color: #555;
+        /*box-shadow: inset 0 0 10px rgb(0, 68, 0), inset 0 0 10px rgb(0, 68, 0);*/
+        color: #111;
+    }
+
+    #form4b102914a7d34d21949aa53f69becb2a .right .form-box form i {
+        position: absolute;
+        top: 30px;
+        right: 10px;
+        width: fit-content;
+    }
+
+    @@media screen and (max-width:1000px) {
+        #form4b102914a7d34d21949aa53f69becb2a {
+            width: 80%;
+        }
+    }
+
+        @@media screen and (max-width:800px) {
+        #form4b102914a7d34d21949aa53f69becb2a {
+            width: 90%;
+        }
+    }
+
+        @@media screen and (max-width:600px) {
+        #form4b102914a7d34d21949aa53f69becb2a {
+            width: 100%;
+        }
+
+        #form4b102914a7d34d21949aa53f69becb2a .right {
+            width: 50%;
+        }
+
+        #form4b102914a7d34d21949aa53f69becb2a .left {
+            width: 50%;
+        }
+
+        #form4b102914a7d34d21949aa53f69becb2a .right .form-box {
+            width: 100%;
+        }
+    }
+
+        @@media screen and (max-width:500px) {
+        #form4b102914a7d34d21949aa53f69becb2a .left {
+            float: none;
+            width: 100%;
+
+        }
+
+        #form4b102914a7d34d21949aa53f69becb2a .right {
+            float: none;
+            width: 100%;
+        }
+
+        #form4b102914a7d34d21949aa53f69becb2a .main>img {
+            object-fit: contain;
+            height: auto;
+        }
+    }
+</style>
+
+<div id="form4b102914a7d34d21949aa53f69becb2a">
+    <div class="clearfix main">
+        <!--img src="../statics/laptopAndLamp.webp" alt=""-->
+        <div class="left">
+            <div class="content-box">
+                <h1>It's time to boost your creativity</h1>
+                <div class="signin-box">
+                    <p>Already a member?</p>
+                    <a asp-action="Login">Sign in <i class="fa-solid fa-circle-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="form-box">
+                <div class="logo-box" style="margin-bottom: 10%;">
+                    <!--h1>LOGO</h1-->
+                    <a asp-controller="Home" asp-action="Index">
+                        <img style="width: 50px;height:50px;object-fit:cover;background-color:white;opacity:1;"
+                            src="Images/HLlogo.jpg" alt="mglogo">
+                    </a>
+                </div>
+                <h2 style="font-weight: 100;">Sign up</h2>
+                <form asp-action="SubmitSignup" method="post">
+                    <div asp-validation-summary="All" style="color: red;"></div>
+                    <div>
+                        <label asp-for="Username">Username <span asp-validation-for="Username"
+                                style="color: red;"></span></label>
+                        <input asp-for="Username" id="username" placeholder="UserName">
+                    </div>
+                    <div>
+                        <label asp-for="Email">Email <span asp-validation-for="Email"
+                                style="color: red;"></span></label>
+                        <input asp-for="Email" type="email" id="email" placeholder="Email">
+                    </div>
+                    <div style="position: relative;">
+                        <label asp-for="Password">Password <span asp-validation-for="Password"
+                                style="color: red;"></span></label>
+                        <input asp-for="Password" type="password" id="password" placeholder="Password"
+                            style="padding-right: 30px;">
+                        <i class="fa-regular fa-eye" onclick="showPassword_form4b102914a7d34d21949aa53f69becb2a(this)">
+                        </i>
+                        <i class="fa-regular fa-eye-slash" style="display: none;"
+                            onclick="hidePassword_form4b102914a7d34d21949aa53f69becb2a(this)">
+                        </i>
+                    </div>
+
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkeZ2wTzJxqgC_K"></div>
+
+                    <div>
+                        <input type="submit" value="Create account">
+                    </div>
+                </form>
+                <script>
+                    function showPassword_form4b102914a7d34d21949aa53f69becb2a(element) {
+                        element.parentElement.getElementsByTagName("input")[0].type = "text";
+                        element.style.display = "none";
+                        element.nextElementSibling.style.display = "block";
+                    }
+                    function hidePassword_form4b102914a7d34d21949aa53f69becb2a(element) {
+                        element.parentElement.getElementsByTagName("input")[0].type = "password";
+                        element.style.display = "none";
+                        element.previousElementSibling.style.display = "block";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

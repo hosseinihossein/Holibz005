@@ -1,0 +1,1404 @@
+@model Identity_UserModel
+@{
+    string currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+
+<!------------------------------- navbar ---------------------------------->
+
+<div id="navbarc9688e3a36eb4b83814687ea3dfa42c7" class="clearfix">
+    <style>
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 {
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0 50px;
+            /*backdrop-filter: blur(5px);*/
+            /*border-bottom: 1px solid gray;*/
+            box-shadow: 0 0 5px gray;
+            z-index: 10;
+        }
+
+        @@media screen and (max-width:1000px) {
+            #navbarc9688e3a36eb4b83814687ea3dfa42c7 {
+                padding: 0;
+            }
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 a.navbar-link {
+            display: block;
+            float: left;
+            padding: 16px;
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: 2px;
+            color: #333;
+            opacity: 0.7;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 a.navbar-link:hover {
+            /*color: #111;*/
+            border-top: 2px solid #555;
+            opacity: 1;
+        }
+
+                @@media screen and (max-width:800px) {
+            #navbarc9688e3a36eb4b83814687ea3dfa42c7 a.navbar-link {
+                display: none;
+            }
+        }
+
+        /********************************************************/
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 #navbar-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 50%;
+            float: left;
+            margin-right: 10px;
+            opacity: 0.7;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 #navbar-logo:hover {
+            opacity: 1;
+        }
+
+        /********************************************************/
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown {
+            position: relative;
+            display: block;
+            width: fit-content;
+            float: left;
+            margin: auto;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropbtn {
+            background-color: transparent;
+            padding: 16px 16px 16px 4px;
+            margin-top: 2px;
+            border: none;
+            cursor: pointer;
+            /*transition: all 0.2s ease-out;*/
+            color: #333;
+            font-size: 14px;
+            /*height: 50px;*/
+            width: fit-content;
+            opacity: 0.7;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown:hover .dropbtn {
+            /*color: #111;*/
+            /*text-shadow: 0 0 5px #111;*/
+            /*background-color: #eee;*/
+            border-top: 2px solid #555;
+            opacity: 1;
+            /*box-shadow: inset 0 0 5px #111;*/
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropbtn .angle {
+            transition: all 0.2s ease-out;
+            position: absolute;
+            font-size: 20px;
+            /*background-color: #ccc;*/
+            top: 14px;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown:hover .angle {
+            rotate: -180deg;
+            display: inline-block;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropdown-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
+            height: 0;
+            width: fit-content;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            background-color: white;
+            /*backdrop-filter: blur(5px);*/
+            /*min-width: 160px;*/
+            box-shadow: 0px 0px 5px 0px gray;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.2s ease-out;
+            opacity: 0;
+            border-radius: 10px;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown.small-screen {
+            display: none;
+        }
+
+                @@media screen and (max-width:800px) {
+            #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown {
+                display: none;
+            }
+
+            #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown.small-screen {
+                display: block;
+            }
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown:hover .dropdown-content {
+            opacity: 1;
+            top: 50px;
+            height: fit-content;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropdown-content a:not(.navbar-link):not(.menu-link) {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #555;
+            font-size: 14px;
+            /*font-weight: bold;*/
+            width: 100%;
+            text-wrap: nowrap;
+            /*border-bottom: 2px solid white;*/
+            margin: 1px;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropdown-content a:not(.navbar-link):not(.menu-link):hover {
+            color: #111;
+            /*text-shadow: 0 0 10px white;*/
+            /*border-bottom: 2px solid gray;*/
+            background-color: #eee;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropdown-content button {
+            text-decoration: none;
+            display: block;
+            color: #555;
+            /*font-weight: bold;*/
+            width: 100%;
+            text-wrap: nowrap;
+            /*border-bottom: 2px solid white;*/
+            margin: 1px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .dropdown .dropdown-content button:hover {
+            color: #111;
+            /*text-shadow: 0 0 10px white;*/
+            /*border-bottom: 2px solid gray;*/
+            background-color: #eee;
+        }
+
+        /********************************************************/
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container {
+            width: fit-content;
+            float: left;
+            margin: 5px;
+            position: relative;
+            /*left: 50%;*/
+            /*transform: translateX(-50%);*/
+        }
+
+        /*@@media screen and (max-width:700px) {
+                #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container {
+                    margin: 5px;
+                }
+            }*/
+
+        /* Style the search field */
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container form.searchForm input[type=text] {
+            padding: 10px 35px 10px 35px;
+            font-size: 14px;
+            border: 1px solid rgb(183, 221, 255);
+            border-radius: 20px;
+            float: left;
+            /*width: fit-content;*/
+            width: 250px;
+            background-color: aliceblue;
+            /*rgba(0, 225, 255, 0.2);*/
+            color: rgb(22, 95, 160);
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container form.searchForm input[type=text]::placeholder {
+            color: rgba(22, 95, 160, 0.5);
+            font-size: 14px;
+        }
+
+        /* Style the submit button */
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container form.searchForm button {
+            /*float: left;*/
+            /*width: 20px;*/
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0);
+            color: rgba(22, 95, 160, 0.5);
+            font-size: 17px;
+            border: none;
+            /*border-left: 1px solid rgba(255, 255, 0, 1);*/
+            cursor: pointer;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /*z-index: 1;*/
+        }
+
+        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .search-input-container form.searchForm button:hover {
+            color: rgb(22, 95, 160);
+        }
+    </style>
+
+    <a href="index.html">
+        <img id="navbar-logo" src="../statics/HLlogo.jpg" alt="">
+    </a>
+
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-puzzle-piece"></i> Component <span
+                class="angle">&blacktriangledown;</span>
+        </button>
+        <div class="dropdown-content clearfix">
+            <div>
+                <a href="#">IMDb 250</a>
+                <a href="#">horror</a>
+                <a href="#">comedy</a>
+            </div>
+            <div>
+                <a href="#">IMDb 250</a>
+                <a href="#">horror</a>
+                <a href="#">comedy</a>
+            </div>
+            <div>
+                <a href="#">IMDb 250</a>
+                <a href="#">horror</a>
+                <a href="#">comedy</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-book"></i> Documents <span
+                class="angle">&blacktriangledown;</span></button>
+        <div class="dropdown-content clearfix">
+            <div>
+                <a href="#">How to </a>
+                <a href="#">horror</a>
+                <a href="#">comedy</a>
+            </div>
+        </div>
+    </div>
+
+    <a class="navbar-link" href=""><i class="fa-solid fa-phone"></i> Contact Us</a>
+    <!--a class="navbar-link" href=""></a-->
+
+    <div class="dropdown small-screen" style="position: static;">
+        <button class="dropbtn">Menu <span class="angle">&blacktriangledown;</span></button>
+        <div class="dropdown-content clearfix">
+            <div id="a551c262641c644419af39637427612ac" class="Scriptd5b6b606f4934bdd8c8850bd3f2937ff">
+                <style>
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac {
+                        width: 100%;
+                        min-width: 300px;
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links {
+                        overflow: hidden;
+                        border: none;
+                        outline: 0;
+                        width: fit-content;
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links button {
+                        display: block;
+                        width: fit-content;
+                        background-color: inherit;
+                        float: left;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        padding: 14px 16px;
+                        transition: 0.3s;
+                        font-size: 14px;
+                        font-weight: normal;
+                        height: 50px;
+                        color: #333;
+                        text-decoration: none;
+                        margin: 0;
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links a.menu-link {
+                        display: block;
+                        width: fit-content;
+                        background-color: inherit;
+                        float: left;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        padding: 17px 16px;
+                        transition: 0.3s;
+                        font-size: 14px;
+                        height: 50px;
+                        color: #333;
+                        text-decoration: none;
+                        margin: 0;
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .tabcontent {
+                        display: none;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        color: white;
+                        border: none;
+                        animation: fadeEffect 0.5s;
+                        overflow: hidden;
+                        width: 100%;
+                    }
+
+                                        @@keyframes fadeEffect {
+                        from {
+                            opacity: 0;
+                        }
+
+                        to {
+                            opacity: 1;
+                        }
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac #Components,
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links .Components.active {
+                        background-color: rgba(253, 33, 33, 0.2);
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac #Documents,
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links .Documents.active {
+                        background-color: rgba(0, 190, 0, 0.2);
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac #Layout,
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links .Layout.active {
+                        background-color: rgba(0, 132, 255, 0.2);
+                    }
+
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac #Anime,
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 #a551c262641c644419af39637427612ac .links .Anime.active {
+                        background-color: rgba(255, 165, 0, 0.2);
+                    }
+                </style>
+
+                <div class="links clearfix">
+                    <button class="tablink Components defaultOpen active">Components</button>
+                    <button class="tablink Documents">Documents</button>
+                    <button class="tablink Layout">Layout</button>
+                    <a class="menu-link" href=""><i class="fa-solid fa-phone"></i> Contact Us</a>
+                </div>
+
+                <div id="Components" class="tabcontent clearfix">
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                </div>
+
+                <div id="Documents" class="tabcontent clearfix">
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                    <div>
+                        <a href="#">IMDb 250</a>
+                        <a href="#">horror</a>
+                        <a href="#">comedy</a>
+                    </div>
+                </div>
+
+                <div id="Layout" class="tabcontent clearfix">
+                    <div>
+                        <button onclick="selectBtn(this)" style="font-size: 32px;padding: 4px 16px;">&rect;</button>
+                        <button onclick="selectBtn(this, 'half')"
+                            style="font-size: 24px;padding: 9px 16px;">&rect;&rect;</button>
+                        <button onclick="selectBtn(this, 'third')"
+                            style="font-size: 16px;padding: 14px 16px;">&rect;&rect;&rect;</button>
+                    </div>
+                </div>
+
+                <script>
+
+                    let mainElements_Scriptd5b6b606f4934bdd8c8850bd3f2937ff = document.getElementsByClassName("Scriptd5b6b606f4934bdd8c8850bd3f2937ff");
+
+                    for (let i = 0; i < mainElements_Scriptd5b6b606f4934bdd8c8850bd3f2937ff.length; i++) {
+                        let mainElement = mainElements_Scriptd5b6b606f4934bdd8c8850bd3f2937ff.item(i);
+                        let siblingTabLinks = mainElement.getElementsByClassName("tablink");
+                        //let siblingTabContents = mainElements[i].getElementsByClassName("tabcontent");
+
+                        //console.log("siblingTabLinks: " + siblingTabLinks.length);
+
+                        for (let j = 0; j < siblingTabLinks.length; j++) {
+
+                            let cityName = siblingTabLinks.item(j).innerHTML;
+
+                            siblingTabLinks.item(j).addEventListener("click", function () {
+                                removeActive_Scriptd5b6b606f4934bdd8c8850bd3f2937ff(mainElement.id);
+
+                                setDisplayNone_Scriptd5b6b606f4934bdd8c8850bd3f2937ff(mainElement.id);
+
+                                mainElement.querySelector(`#${cityName}`).style.display = "flex";
+                                siblingTabLinks.item(j).classList.add("active");
+                            });
+                        }
+
+                        mainElement.querySelector(".defaultOpen").click();
+                    }
+                    // remove active From Sibling TabLinks' classList
+                    function removeActive_Scriptd5b6b606f4934bdd8c8850bd3f2937ff(mainElementId) {
+                        let mainElement = document.getElementById(mainElementId);
+                        let siblingTabLinks = mainElement.getElementsByClassName("tablink");
+                        for (let i = 0; i < siblingTabLinks.length; i++) {
+                            siblingTabLinks[i].classList.remove("active");
+                        }
+                    }
+
+                    // set display to none for all tabcontent element
+                    function setDisplayNone_Scriptd5b6b606f4934bdd8c8850bd3f2937ff(mainElementId) {
+                        let mainElement = document.getElementById(mainElementId);
+                        let siblingTabContents = mainElement.getElementsByClassName("tabcontent");
+                        for (let i = 0; i < siblingTabContents.length; i++) {
+                            siblingTabContents[i].style.display = "none";
+                        }
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="search-input-container">
+        <form class="searchForm" action="" autocomplete="off">
+            <input type="text" placeholder="Search..." name="search" autocomplete="off">
+            <button type="submit" style="right: 0;left: auto;"><i class="fa fa-search"></i></button>
+            <button onclick="openSearchBox()" type="button"><i class="fa-solid fa-sliders"></i></button>
+        </form>
+        <script>
+            function openSearchBox() {
+                let searchBox = document.querySelector(".minisearchbox5cb061509f4b4376a7bc1beaaad02fd0.navbar");
+                if (!searchBox.classList.contains("open")) {
+                    searchBox.classList.add("open");
+                }
+            }
+        </script>
+    </div>
+
+    <div class="dropdown">
+        <button id="navbar-upperBtn-arrangement" class="dropbtn" style="font-size: 24px;padding: 9px 16px;">&rect;&rect;
+            <span class="angle"> &blacktriangledown;</span>
+        </button>
+        <div class="dropdown-content clearfix">
+            <div>
+                <button onclick="selectBtn(this)" style="font-size: 32px;padding: 4px 16px;">&rect;</button>
+                <button onclick="selectBtn(this, 'half')"
+                    style="font-size: 24px;padding: 9px 16px;">&rect;&rect;</button>
+                <button onclick="selectBtn(this, 'third')"
+                    style="font-size: 16px;padding: 14px 16px;">&rect;&rect;&rect;</button>
+            </div>
+        </div>
+
+        <script>
+            function selectBtn(btn, frameLayout = null) {
+                let upperBtn = document.getElementById("navbar-upperBtn-arrangement");//btn.parentElement.parentElement.previousElementSibling;
+                upperBtn.innerHTML = btn.innerHTML + "<span class='angle'> &blacktriangledown;</span>";
+                upperBtn.style.fontSize = btn.style.fontSize;
+                upperBtn.style.padding = btn.style.padding;
+                //console.log(frameLayout);
+                let browserFrames = document.getElementsByClassName("browserFrame");
+                for (let browserFrame of browserFrames) {
+                    if (frameLayout == null) {
+                        browserFrame.className = "browserFrame";
+                    }
+                    else {
+                        browserFrame.className = `browserFrame ${frameLayout}`;
+                    }
+                }
+            }
+        </script>
+    </div>
+
+    <div id="user-container">
+        <style>
+            #navbarc9688e3a36eb4b83814687ea3dfa42c7 #user-container {
+                float: right;
+            }
+        </style>
+        <div class="user-account-container">
+            <style>
+                #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-account-dropdown {
+                    cursor: pointer;
+                }
+            </style>
+            <div class="user-account-dropdown">
+                <style>
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-account-dropdown img {
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        background-color: transparent;
+                    }
+                </style>
+                @if(User.Identity != null && User.Identity.IsAuthenticated)
+                                {
+                <img src="/Identity/UserImage?username=@Model.UserName" alt="user image">
+                                }
+                                else
+                {
+                    <img src="/Identity/UserImage?username=_" alt="default user image">
+                }
+
+                <style>
+                    #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-menu-container {
+                        position: absolute;
+                        right: 50px;
+                    }
+
+                    @@media screen and (max-width:1000px) {
+                        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-menu-container {
+                            right: 0px;
+                        }
+                    }
+                </style>
+                <div class="user-menu-container">
+                    <style>
+                        .menu714118d2b2e9457a94134762e94de1ec {
+                            background-color: aliceblue;
+                            color: black;
+                            width: 250px;
+                            padding: 0px;
+                            border-radius: 20px;
+                            /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);*/
+                            height: 0;
+                            overflow: hidden;
+                            transition: all 0.2s;
+                            cursor: auto;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec a {
+                            text-decoration: none;
+                            color: inherit;
+                        }
+
+                        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-account-dropdown:hover .menu714118d2b2e9457a94134762e94de1ec {
+                            height: 350px;
+                            padding: 20px 10px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec>div {
+                            background-color: white;
+                            border-radius: 10px;
+                            width: 100%;
+                            margin: 10px auto;
+                            padding: 0 10px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec .profile-box {
+                            padding: 10px 20px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec .profile-box img {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                            float: left;
+                            margin-right: 5px;
+                        }
+
+                        /************* login *************/
+
+                        #navbarc9688e3a36eb4b83814687ea3dfa42c7 .user-account-dropdown:hover .menu714118d2b2e9457a94134762e94de1ec.login {
+                            height: 230px;
+                            padding: 20px 10px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.login .profile-box {
+                            padding: 10px 20px;
+                            text-align: center;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.login .profile-box img {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                            margin-left: 70px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec .profile-box .name {
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec .profile-box .email {
+                            font-size: 12px;
+                            color: gray;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec ul {
+                            list-style-type: none;
+                            padding: 10px 0;
+                            font-size: 10px;
+                            color: gray;
+                            font-weight: bold;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec li {
+                            padding: 10px;
+                            cursor: pointer;
+                            font-weight: normal;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec li:hover {
+                            background-color: azure;
+                            color: black;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec li {
+                            font-size: 14px;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec li i {
+                            margin-right: 5px;
+                        }
+
+                        /***************************** dark-mode *****************************/
+
+                        .menu714118d2b2e9457a94134762e94de1ec.dark-mode {
+                            background-color: rgb(30, 30, 30);
+                            color: white;
+                            /*box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);*/
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.dark-mode>div {
+                            background-color: rgb(50, 50, 50);
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.dark-mode li:hover {
+                            background-color: rgb(40, 40, 40);
+                            color: white;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.dark-mode ul {
+                            color: lightgray;
+                        }
+
+                        .menu714118d2b2e9457a94134762e94de1ec.dark-mode .profile-box .email {
+                            color: lightgray;
+                        }
+                    </style>
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                        {
+                    <div class="menu714118d2b2e9457a94134762e94de1ec">
+                        <div class="profile-box clearfix">
+                            <img src="/Identity/UserImage?username=@Model.UserName" alt="user image">
+                            <span class="name">@Model.UserName</span>
+                            <br>
+                            <span class="email">@Model.Email</span>
+                        </div>
+                        <div class="management-div">
+                            <ul>Manage
+                                <li>
+                                    <a asp-controller="Account" asp-action="Dashboard">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                        Dashborad
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Account" asp-action="Settings">
+                                        <i class="fa-solid fa-gear"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <!--li>
+                                    <a asp-controller="Inventory" asp-action="WebForm">
+                                        <i class="fa-regular fa-newspaper"></i>
+                                        Purchase
+                                    </a>
+                                </li-->
+                            </ul>
+                        </div>
+                        <div class="work-div">
+                            <ul>Account
+                                <li>
+                                    <a asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@currentUrl">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                                        }
+                                        else
+                    {
+                        <div class="menu714118d2b2e9457a94134762e94de1ec login">
+                            <div class="profile-box clearfix">
+                                <img src="/Identity/UserImage?username=_" alt="">
+                            </div>
+                            <div class="management-div">
+                                <ul>Account
+                                    <li>
+                                        <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@currentUrl">
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Account" asp-action="SignUp">
+                                            <i class="fa-solid fa-user-plus"></i>
+                                            Create a new account
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 navbar">
+        <style>
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 {
+                /*display: none;*/
+                transition: 0.1s;
+                /*border: 2px solid #333;*/
+                border-radius: 20px;
+                width: 490px;
+                height: 0;
+                margin: 0px auto;
+                position: absolute;
+                left: 50%;
+                top: 50px;
+                transform: translateX(-50%);
+                overflow: hidden;
+                background-color: white;
+                /*rgba(30, 60, 70, 1);*/
+                box-shadow: 0 0 5px gray;
+                z-index: 10;
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0.open {
+                padding: 15px 10px 15px;
+                top: 70px;
+                height: fit-content;
+            }
+
+            /*.minisearchbox5cb061509f4b4376a7bc1beaaad02fd0::before {
+                    content: "close";
+                    position: absolute;
+                    top: -40px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    box-shadow: 0px -2px 5px gray;
+                    color: #333;
+                    padding: 10px 20px;
+                    border: 2px solid white;
+                    border-radius: 10px 10px 0 0;
+                    border-bottom: none;
+                    z-index: 1;
+                }*/
+
+            @@media screen and (max-width:500px) {
+                .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0.open {
+                    width: 200px;
+                }
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form>div {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form input[type=number] {
+                width: fit-content;
+                font-size: 16px;
+                padding: 12px 20px;
+                border: 1px solid rgb(183, 221, 255);
+                /*box-shadow: 0 0 5px gray;*/
+                border-radius: 10px;
+                display: block;
+                background-color: aliceblue;
+                overflow: visible;
+                color: rgb(22, 95, 160);
+                position: relative;
+            }
+
+                        @@media screen and (max-width:500px) {
+                .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form input[type=number] {
+                    width: 170px;
+                }
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form input[type=number]::placeholder {
+                color: rgba(22, 95, 160, 0.5);
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form button[type=submit] {
+                border: 2px solid rgb(183, 221, 255);
+                border-radius: 20px;
+                font-size: 16px;
+                font-weight: normal;
+                padding: 10px 20px;
+                color: rgba(22, 95, 160, 0.5);
+                background-color: aliceblue;
+                cursor: pointer;
+                /*float: right;*/
+                margin-top: 10px;
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 form button[type=submit]:hover {
+                color: rgb(22, 95, 160);
+                /*font-weight: bold;*/
+                border-color: rgb(22, 95, 160);
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 .search-input {
+                display: block;
+                width: 95%;
+                padding: 10px 20px;
+                margin: 5px auto;
+                font-size: 16px;
+                border: 1px solid rgb(183, 221, 255);
+                border-radius: 20px;
+                color: rgb(22, 95, 160);
+                background-color: aliceblue;
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 .search-input[type=text]::placeholder {
+                color: rgba(22, 95, 160, 0.5);
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 #close-span {
+                position: absolute;
+                right: 10px;
+                top: -3px;
+                font-size: 32px;
+                color: gray;
+                cursor: pointer;
+                opacity: 1;
+            }
+
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 #close-span:hover {
+                color: red;
+            }
+
+            /********** tag span **********/
+            .minisearchbox5cb061509f4b4376a7bc1beaaad02fd0 .input-tag-span {
+                position: absolute;
+                z-index: 1;
+                font-size: 12px;
+                color: rgb(22, 95, 160);
+                padding: 2px 5px;
+                left: 10px;
+                top: -10px;
+            }
+        </style>
+
+        <style>
+            .filterc989389831344968860237078e2a16f7 {
+                width: 47%;
+                margin: 2px;
+                /*border: 1px solid gray;*/
+                position: relative;
+                /*float: left;*/
+            }
+
+            .filterc989389831344968860237078e2a16f7::after {
+                content: "";
+                border-top: 2px solid rgb(183, 221, 255);
+                border-left: 2px solid rgb(183, 221, 255);
+                position: absolute;
+                top: 30px;
+                right: 15px;
+                padding: 3px;
+                rotate: 225deg;
+                transition: 0.3s;
+            }
+
+            .filterc989389831344968860237078e2a16f7.focused::after {
+                rotate: 45deg;
+                top: 33px;
+            }
+
+            .filterc989389831344968860237078e2a16f7 .mySelectInput {
+                width: 100%;
+                font-size: 14px;
+                padding: 12px 20px;
+                border: 1px solid rgb(183, 221, 255);
+                border-radius: 10px;
+                display: block;
+                background-color: aliceblue;
+                overflow: visible;
+                color: rgb(22, 95, 160);
+                position: relative;
+            }
+
+            /*.filterc989389831344968860237078e2a16f7.focused .mySelectInput {
+                    background-color: rgb(30, 60, 70);
+                    border-color: white;
+                }*/
+
+            .filterc989389831344968860237078e2a16f7 .mySelectInput::placeholder {
+                color: rgba(22, 95, 160, 0.5);
+            }
+
+            /*.filterc989389831344968860237078e2a16f7.focused .mySelectInput::placeholder {
+                    color: rgba(255, 255, 255, 0.5);
+                }*/
+
+            .filterc989389831344968860237078e2a16f7 .filterContainer {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                height: 0px;
+                overflow: auto;
+                transition: 0.3s;
+                border-radius: 5px;
+                position: relative;
+                /*background-color: rgb(30, 60, 70);*/
+                max-height: 200px;
+                position: absolute;
+                z-index: 2;
+                width: 100%;
+            }
+
+            .filterc989389831344968860237078e2a16f7 .filterContainer li button {
+                border: 1px solid #ccc;
+                /*rgb(20, 40, 50);*/
+                /*margin-top: -1px;*/
+                background-color: white;
+                /*rgb(30, 60, 70);*/
+                padding: 12px 20px;
+                font-size: 14px;
+                color: #555;
+                display: block;
+                width: 100%;
+                text-align: start;
+                cursor: pointer;
+                position: relative;
+                z-index: 1;
+            }
+
+            .filterc989389831344968860237078e2a16f7 .filterContainer li button:hover,
+            .filterc989389831344968860237078e2a16f7 .filterContainer li button.active {
+                background-color: #eee;
+                color: #111;
+                /*rgb(30, 80, 90);*/
+            }
+
+            /*.filterc989389831344968860237078e2a16f7 .filterContainer li button.active {
+                    background-color: rgb(30, 80, 90);
+                }*/
+
+            /***************** scroll ********************/
+            /* width */
+            .filterc989389831344968860237078e2a16f7 .filterContainer::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            /* Track */
+            .filterc989389831344968860237078e2a16f7 .filterContainer::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px grey;
+                border-radius: 10px;
+            }
+
+            /* Handle */
+            .filterc989389831344968860237078e2a16f7 .filterContainer::-webkit-scrollbar-thumb {
+                background: red;
+                border-radius: 10px;
+            }
+
+            /* Handle on hover */
+            .filterc989389831344968860237078e2a16f7 .filterContainer::-webkit-scrollbar-thumb:hover {
+                background: #b30000;
+            }
+        </style>
+
+        <style>
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f {
+                width: fit-content;
+                border: 1px solid rgb(183, 221, 255);
+                border-radius: 10px;
+                padding: 10px 30px;
+                position: relative;
+                overflow: visible;
+                margin: 10px 10px 0;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f::before {
+                content: "Title";
+                position: absolute;
+                top: -10px;
+                left: 5px;
+                background-color: white;
+                color: rgb(22, 95, 160);
+                padding: 1px 5px;
+                font-size: 12px;
+                border-radius: 5px;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f#responsive-div::before {
+                content: "Responsive";
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f#website-div::before {
+                content: "Website";
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f#fourK-div::before {
+                content: "4K";
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f#threeD-div::before {
+                content: "3D";
+            }
+
+            /* The switch - the box around the slider */
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .switch {
+                position: relative;
+                display: inline-block;
+                width: 32px;
+                height: 22px;
+            }
+
+            /* Hide default HTML checkbox */
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            /* The slider */
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: transparent;
+                -webkit-transition: .4s;
+                transition: .4s;
+                border: 2px solid rgb(183, 221, 255);
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .slider:before {
+                position: absolute;
+                content: "";
+                height: 10px;
+                width: 10px;
+                left: 3px;
+                bottom: 4px;
+                background-color: rgb(183, 221, 255);
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f input:checked+.slider {
+                background-color: lawngreen;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f input:focus+.slider {
+                box-shadow: 0 0 1px lawngreen;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f input:checked+.slider:before {
+                -webkit-transform: translateX(12px);
+                -ms-transform: translateX(12px);
+                transform: translateX(12px);
+            }
+
+            /* Rounded sliders*/
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .slider.round {
+                border-radius: 20px;
+            }
+
+            .sliderButton52e0ab269f5c4b208af0f84c11f3528f .slider.round:before {
+                border-radius: 50%;
+            }
+        </style>
+
+        <h5 style="color: rgb(22, 95, 160);text-align: center;margin: 0 0 15px 0;">Advanced Search</h5>
+        <span id="close-span" onclick="this.parentElement.classList.remove('open')">&times;</span>
+        <form action="" class="clearfix" onkeypress="if(event.keyCode == 13) {event.preventDefault();return false;}">
+
+            <div class="clearfix">
+                <div class="filterc989389831344968860237078e2a16f7">
+                    <div style="position: relative;margin-top: 15px;">
+                        <span class="input-tag-span" style="left: 0;top: -15px;">Type</span>
+                        <input type="text" class="mySelectInput"
+                            onkeyup="if(event.key != 'ArrowUp' && event.key != 'ArrowDown'){filter_Script_a0d21024282f453f8247fefa6ec435f2(this);}"
+                            placeholder="Type" autocomplete="off">
+                    </div>
+
+                    <ul class="filterContainer">
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">All
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Movie
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Series
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Animation
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Anime
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="filterc989389831344968860237078e2a16f7">
+                    <div style="position: relative;margin-top: 15px;">
+                        <span class="input-tag-span" style="left: 0;top: -15px;">SortBy</span>
+                        <input type="text" class="mySelectInput"
+                            onkeyup="if(event.key != 'ArrowUp' && event.key != 'ArrowDown'){filter_Script_a0d21024282f453f8247fefa6ec435f2(this);}"
+                            placeholder="Sort By" autocomplete="off">
+                    </div>
+
+                    <ul class="filterContainer">
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Any
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Newest
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Oldest
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Most Liked
+                            </button>
+                        </li>
+                        <li class="filterItems">
+                            <button type="button"
+                                onclick="this.parentElement.parentElement.previousElementSibling.querySelector('input').value = this.innerText;this.parentElement.parentElement.previousElementSibling.querySelector('input').focus();"
+                                class="innerFilterItem">Most Downloaded
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--div style="margin: 2px;">
+                        <input type="number" placeholder="From Year">
+                    </div>
+
+                    <div style="margin: 2px;">
+                        <input type="number" placeholder="To Year">
+                    </div-->
+            </div>
+
+            <div style="position: relative;margin-top: 15px;">
+                <span class="input-tag-span">Search</span>
+                <input type="text" class="search-input" placeholder="Search..">
+            </div>
+
+            <div style="position: relative;margin-top: 15px;">
+                <span class="input-tag-span">Developer</span>
+                <input type="text" class="search-input" placeholder="Developer..">
+            </div>
+
+            <div class="clearfix">
+                <div class="sliderButton52e0ab269f5c4b208af0f84c11f3528f" id="responsive-div">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="sliderButton52e0ab269f5c4b208af0f84c11f3528f" id="website-div">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <!--div class="sliderButton52e0ab269f5c4b208af0f84c11f3528f" id="fourK-div">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="sliderButton52e0ab269f5c4b208af0f84c11f3528f" id="threeD-div">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div-->
+            </div>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <script>
+            let mainElements_filterc989389831344968860237078e2a16f7 = document.getElementsByClassName("filterc989389831344968860237078e2a16f7");
+            for (let mainElement of mainElements_filterc989389831344968860237078e2a16f7) {
+                mainElement.querySelector(".mySelectInput").addEventListener("focus", () => {
+                    if (!mainElement.classList.contains("focused")) {
+                        mainElement.querySelector('.filterContainer').style.height = mainElement.querySelector('.filterContainer').scrollHeight + 'px';
+                        mainElement.classList.add("focused");
+                    }
+                });
+
+                mainElement.querySelector(".mySelectInput").addEventListener("keydown", (e) => {
+                    if (e.key == "ArrowDown") {
+                        let activeBtnIndex = -1;
+                        let innerBtns = mainElement.getElementsByClassName("innerFilterItem");
+                        for (let i = 0; i < innerBtns.length; i++) {
+                            if (innerBtns[i].classList.contains("active")) {
+                                activeBtnIndex = i;
+                                innerBtns[i].classList.remove("active");
+                            }
+                        }
+                        if (activeBtnIndex >= innerBtns.length - 1) {
+                            activeBtnIndex = innerBtns.length - 2;
+                        }
+                        innerBtns[activeBtnIndex + 1].classList.add("active");
+                        mainElement.querySelector(".mySelectInput").value = innerBtns[activeBtnIndex + 1].innerText;
+
+                        let topScroll = 0;
+                        for (let i = 0; i <= activeBtnIndex; i++) {
+                            topScroll += innerBtns[i].offsetHeight;
+                        }
+                        let innerBtnHeight = innerBtns[activeBtnIndex + 1].offsetHeight;
+                        if (topScroll + innerBtnHeight > (200 + mainElement.querySelector('.filterContainer').scrollTop)) {
+                            mainElement.querySelector('.filterContainer').scrollTop = (topScroll + innerBtnHeight) - 200;
+                        }
+                    }
+                    if (e.key == "ArrowUp") {
+                        let activeBtnIndex = -1;
+                        let innerBtns = mainElement.getElementsByClassName("innerFilterItem");
+                        for (let i = 0; i < innerBtns.length; i++) {
+                            if (innerBtns[i].classList.contains("active")) {
+                                activeBtnIndex = i;
+                                innerBtns[i].classList.remove("active");
+                            }
+                        }
+                        if (activeBtnIndex <= 0) {
+                            activeBtnIndex = 1;
+                        }
+                        innerBtns[activeBtnIndex - 1].classList.add("active");
+                        mainElement.querySelector(".mySelectInput").value = innerBtns[activeBtnIndex - 1].innerText;
+
+                        let topScroll = 0;
+                        for (let i = 0; i <= activeBtnIndex - 1; i++) {
+                            topScroll += innerBtns[i].offsetHeight;
+                        }
+                        let innerBtnHeight = innerBtns[activeBtnIndex - 1].offsetHeight;
+                        if (topScroll - innerBtnHeight < (mainElement.querySelector('.filterContainer').scrollTop)) {
+                            mainElement.querySelector('.filterContainer').scrollTop = topScroll - innerBtnHeight;
+                        }
+                    }
+                });
+            }
+
+            document.addEventListener("click", (e) => {
+                for (let mainElement of mainElements_filterc989389831344968860237078e2a16f7) {
+                    if (e.target != mainElement.querySelector(".mySelectInput")) {
+                        if (mainElement.classList.contains("focused")) {
+                            mainElement.querySelector(".filterContainer").style.height = "0";
+                            mainElement.classList.remove("focused");
+                        }
+                    }
+                }
+            });
+
+            function filter_Script_a0d21024282f453f8247fefa6ec435f2(inputElement) {
+                let mainElement = inputElement.parentElement.parentElement;
+                // Declare variables
+                let filter, filteredContainer, filteredItems, innerFilteredItem, i, txtValue;
+                //inputElement = mainElement_filterc989389831344968860237078e2a16f7.querySelector('.mySelectInput');
+                filter = inputElement.value.toUpperCase();
+                filteredContainer = mainElement.getElementsByClassName("filterContainer")[0];
+                filteredItems = filteredContainer.getElementsByClassName('filterItems');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < filteredItems.length; i++) {
+                    innerFilteredItem = filteredItems[i].getElementsByClassName("innerFilterItem")[0];
+                    txtValue = innerFilteredItem.textContent || innerFilteredItem.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        filteredItems[i].style.display = "";
+                    } else {
+                        filteredItems[i].style.display = "none";
+                    }
+                }
+
+                //filteredContainer.style.height = "0px";
+                let ulHeight = 0;
+                for (let childElement of filteredContainer.children) {
+                    ulHeight += childElement.clientHeight;
+                }
+                filteredContainer.style.height = ulHeight + 'px';
+            }
+        </script>
+    </div>
+
+</div>
+
+<br><br><br>

@@ -1,0 +1,225 @@
+@model Identity_ProfileModel
+
+<!----------------------------------------------------------------->
+<style>
+    #card7724cc1dd56c415ba1884d5626e55d9e {
+        padding: 20px;
+        width: 70%;
+        height: fit-content;
+        margin: 70px auto 0;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+        box-shadow: 0 0 5px gray;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info {
+        width: 50%;
+        float: left;
+        color: #333;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info img {
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 0 5px gray;
+        border-radius: 50%;
+        object-fit: cover;
+        display: inline-block;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .username {
+        display: inline-block;
+        /*margin: 10px 10px;*/
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info pre.about-me {
+        text-wrap: wrap;
+        line-height: 150%;
+        display: inline-block;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .brief-info {
+        padding: 10px;
+        border: 2px solid lightgray;
+        border-radius: 5px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div {
+        width: 45%;
+        max-height: calc(100vh - 70px - 40px - 10px);
+        float: right;
+        overflow: hidden;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 0 5px gray;
+        border-radius: 10px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div img {
+        object-fit: cover;
+        width: 100%;
+        height: calc(100vh - 70px - 40px - 10px);
+        object-position: center;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e .profile-info .email-container p {
+        float: left;
+        font-size: 18px;
+        margin: 0;
+        margin-right: 5px;
+    }
+
+    /*#card7724cc1dd56c415ba1884d5626e55d9e i {
+            font-size: 18px;
+        }*/
+
+    #card7724cc1dd56c415ba1884d5626e55d9e label.choose-file-label {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: block;
+        width: fit-content;
+        margin: auto;
+        border-radius: 30px;
+    }
+
+    #card7724cc1dd56c415ba1884d5626e55d9e label.choose-file-label:hover {
+        background-color: #06c981;
+    }
+
+    @@media screen and (max-width:1000px) {
+        #card7724cc1dd56c415ba1884d5626e55d9e {
+            width: 100%;
+        }
+    }
+
+        @@media screen and (max-width:600px) {
+        #card7724cc1dd56c415ba1884d5626e55d9e .profile-info {
+            width: 100%;
+        }
+
+        #card7724cc1dd56c415ba1884d5626e55d9e .showcase-div {
+            display: none;
+        }
+    }
+</style>
+<div id="card7724cc1dd56c415ba1884d5626e55d9e" class="clearfix">
+    <div class="profile-info">
+        <div>
+            <img src="./UserImage?username=@Model.MyUser?.UserName&v=@Model.MyUser?.Version" alt="User Profile Image">
+            <h1 class="username">@Model.MyUser?.UserName</h1>
+            <!--div class="email-container clearfix">
+                <p><i class="fa-regular fa-envelope" style="font-size: 16px;color: gray;"></i></p>
+                <p style="font-size: 16px;">Model.MyUser?.Email</p>
+            </div-->
+        </div>
+        <div style="padding: 10px;box-shadow: 0 0 5px gray;border-radius: 5px;margin: 10px 0;" class="clearfix">
+            <pre class="about-me">@Model.MyUser?.Description</pre>
+        </div>
+        <div class="brief-info clearfix">
+            <style>
+                #m0d316c320a804d939c5afcaf15609f36 {
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+
+                /* Float four columns side by side */
+                #m0d316c320a804d939c5afcaf15609f36 .column {
+                    float: left;
+                    width: 50%;
+                    padding: 0 5px;
+                }
+
+                #m0d316c320a804d939c5afcaf15609f36 .column a {
+                    text-decoration: none;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                #m0d316c320a804d939c5afcaf15609f36 .column a:hover .card {
+                    /*display: block;*/
+                    background-color: #333;
+                    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.7);
+                }
+
+                #m0d316c320a804d939c5afcaf15609f36 .row {
+                    margin: 0 -5px;
+                }
+
+                /* Responsive columns */
+                                @@media screen and (max-width: 800px) {
+                    #m0d316c320a804d939c5afcaf15609f36 .column {
+                        width: 80%;
+                        display: block;
+                        margin: 10px auto;
+                        float: none;
+                    }
+                }
+
+                /* Style the counter cards */
+                #m0d316c320a804d939c5afcaf15609f36 .card {
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+                    padding: 5px;
+                    text-align: center;
+                    background-color: #555;
+                    color: white;
+                    border-radius: 5px;
+                }
+
+                #m0d316c320a804d939c5afcaf15609f36 .fa {
+                    font-size: 30px;
+                }
+            </style>
+            <div id="m0d316c320a804d939c5afcaf15609f36">
+                <div class="row clearfix">
+
+                    <div class="column">
+                        <a href="">
+                            <div class="card">
+                                <p><i class="fa fa-check"></i></p>
+                                <h3>@Model.NumberOfProjects</h3>
+                                <p>Projects</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="column">
+                        <div class="card">
+                            <p><i class="fa fa-smile"></i></p>
+                            <h3>@Model.NumberOfLikes</h3>
+                            <p>Likes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="showcase-div clearfix">
+        <img src="./UserShowcase?username=@Model.MyUser?.UserName&v=@Model.MyUser?.Version" alt="User Profile Showcase">
+        @if(Model.MyUser?.HasSpecificShowcase ?? false && (Model.MyUser?.SpecificShowcaseBy != null ||
+                Model.MyUser?.SpecificShowcaseLink != null))
+                {
+        <span style="font-size: 14px;position: absolute;bottom: 10px;left: 10px; color: gray;">
+            Photo by <a href="@Model.MyUser.SpecificShowcaseLink">@Model.MyUser.SpecificShowcaseBy</a>
+        </span>
+                }
+                else if (Model.MyUser == null || !Model.MyUser.HasSpecificShowcase)
+        {
+            <span style="font-size: 14px;position: absolute;bottom: 10px;left: 10px; color: gray;">
+                Photo by <a
+                    href="https://unsplash.com/@@fazurrehman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Faizur
+                    Rehman</a> on <a
+                    href="https://unsplash.com/photos/person-holding-black-ipad-with-green-plant-dJpupM4LiS4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+            </span>
+        }
+
+    </div>
+</div>
